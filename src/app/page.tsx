@@ -1,11 +1,23 @@
-import Image from "next/image";
-import Menu from "./_components/menu.tsx";
+"use client";
+import Link from "next/link";
+import {useState} from "react";
 
-export default function Home() {
+export default function HomePage() {
+	const [conteudo, setConteudo] = useState("");
+	const [num, setNum] = useState(1);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-		<Menu/>
-		<h1>Olá. Bem-vindo ao projeto!</h1>
-    </div>
+    <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-b from-[#2e026d] to-[#15162c] text-white">
+			<div className="container flex flex-col items-center justify-center gap-12 px-4 py-16">
+				<p>Alerta #{num}</p>
+				<input type="text" className="bg-white-100-border" onChange={(item)=> {
+					setConteudo(item.target.value);
+				}}/>
+				<button onClick={()=>{
+					setNum(num + 1);
+					alert(conteudo);
+				}}>Adicionar</button>
+			</div>
+    </main>
   );
 }
